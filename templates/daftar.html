@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      let foo = prompt("Student Name:");
+      let boo = prompt("Face Id");
+      console.log(foo);
+      console.log(boo);
+      let variable = { value: foo, face_id: boo };
+      $.ajax({
+        url: "/process",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(variable),
+      }).done(function result() {
+        console.log(result);
+      });
+    </script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div style="display: flex; justify-content: center; align-items: center">
+      <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+          <h3 style="text-align: center">Face Detect</h3>
+          <img
+            width="800px"
+            height="600px"
+            src="{{ url_for('video_dataset') }}"
+            width="100%" />
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
