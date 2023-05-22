@@ -1,7 +1,7 @@
-echo "# recognition app" >> README.md
+echo "# recognitionapp" >> README.md
 git init
 git add README.md
 git commit -m "first commit"
 git branch -M main
-git remode add origin "https://github.com/aditbest5/Flask-Recognition.git"
+git remote add origin https://github.com/aditbest5/Flask-Recognition.git
 git push -u origin main

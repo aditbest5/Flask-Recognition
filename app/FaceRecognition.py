@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 def gen_frames():
     dataset_folder = "dataset/"
     name = ""
-    face_id = ""
     names = []
     images = []
     for folder in os.listdir(dataset_folder):
@@ -41,18 +40,9 @@ def gen_frames():
             croped_images.append(img)
         else :
             del names[i]
-
-    for label in labels:
-        ids = np.where(label== np.array(names))[0]
-        images_class = croped_images[ids[0] : ids[-1] + 1] # select croped images for each class
         
-    name_vec = np.array([np.where(name == labels)[0][0] for name in names])
-    model = cv2.face.LBPHFaceRecognizer_create()
 
-    model.train(croped_images, name_vec)
-
-    model.save("lbph_model.yml")
-    model.read("lbph_model.yml")
+    models_face =  model.read("lbph_model.yml")
 
     def draw_ped(img, label, x0, y0, xt, yt, color=(255,127,0), text_color=(255,255,255)):
         
@@ -88,7 +78,7 @@ def gen_frames():
                 face_img = gray[y:y+h, x:x+w]
                 face_img = cv2.resize(face_img, (100, 100))
                 
-                idx, confidence = model.predict(face_img)
+                idx, confidence = models_face.predict(face_img)
                 if (confidence < 100 ):
     
                     label_text = "%s (%.2f %%)" % (labels[idx], confidence)
