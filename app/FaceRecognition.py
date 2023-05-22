@@ -30,7 +30,6 @@ def gen_frames():
             img = img[y:y+h, x:x+w]
             img = cv2.resize(img, (100, 100))
         except :
-            print("Face not found in image index", i)
             img = None
         return img
 
